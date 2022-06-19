@@ -16,6 +16,7 @@ import uuid from 'react-uuid'
 
 //import components
 import Event from '../../components/event/event.component';
+import FilterByType from '../../components/filterbytype/filterbytype.component';
 
 
 function HomePage(props){
@@ -44,7 +45,7 @@ function HomePage(props){
             </Grid>
 
             <Grid item xs={3}>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit, sint.
+                <FilterByType></FilterByType>
             </Grid>
 
             <Grid container item xs={7} spacing={2}>
@@ -53,7 +54,7 @@ function HomePage(props){
                     events ? 
                     events.map(event => {
                         return(
-                            <Grid key={uuid()} item xs={6} lg={4}>
+                            <Grid key={uuid()} item sm={12} md={6} lg={4}>
                                 <Event
                                     eventName = {event.eventName}
                                     eventTypeID = {event.eventTypeID}

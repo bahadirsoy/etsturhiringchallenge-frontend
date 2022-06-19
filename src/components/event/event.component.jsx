@@ -106,7 +106,7 @@ function Event(props){
     }
 
     return(
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345 }} className="mt-5">
             <CardMedia
                 component="img"
                 height="140"
@@ -122,9 +122,14 @@ function Event(props){
                     {convertTime(props.eventDate)}
                 </Typography>
 
-                <Typography variant="subtitle2" color="text.secondary">
+                <Typography variant="subtitle2" color="text.secondary" align='left' display={"inline-block"} style={{width: "50%"}}>
                     {eventTypeName ? eventTypeName : null}
                 </Typography>
+
+                <Typography variant="subtitle2" color="text.secondary" align='right' display={"inline-block"} style={{width: "50%"}}>
+                    {eventLocationName ? eventLocationName : null}
+                </Typography>
+                
             </CardContent>
         </Card>
     )
