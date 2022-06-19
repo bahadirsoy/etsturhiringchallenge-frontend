@@ -52,6 +52,32 @@ function HomePage(props){
     const [eventTypeNames, setEventTypeNames] = useState('');
     /* End of the filter by type variables */
 
+
+
+    /* Filter by location variables */
+    const [locationValue, setLocationValue] = useState('');
+
+    const filterByLocation = (e) => {
+        if(locationValue == e.target.value){
+            setLocationValue("")
+            setFilteredEvents(events)
+        } else{
+            setLocationValue(e.target.value)
+
+            setFilteredEvents(events)
+            const filteredEventsList = events.filter(event => {
+                return event.eventLocationID == e.target.value
+            })
+            setFilteredEvents(filteredEventsList)
+        }
+
+        
+    };
+
+    //store all eventLocationNames
+    const [eventLocationNames, setEvenetLocationNames] = useState('')
+    /* End of the filter by location variables */
+
     //store all events
     const [events, setEvents] = useState('')
     const [filteredEvents, setFilteredEvents] = useState('')
@@ -75,6 +101,15 @@ function HomePage(props){
         .then((response) => {
             //store all eventTypeNames
             setEventTypeNames(response.data)
+        })
+
+        //get all eventLocationNames
+        Axios.get("http://localhost:3001/api/getEventLocationNames", {
+
+        })
+        .then((response) => {
+            //store all eventLocationNames
+            setEvenetLocationNames(response.data)
         })
     }, [])
 
@@ -104,6 +139,34 @@ function HomePage(props){
                                     return(
                                         <div key={uuid()}>
                                             <FormControlLabel value={element.eventTypeID} control={<Radio onClick={filterByType} />} label={element.eventTypeName} />
+                                        </div>
+                                    )
+                                })
+                                : null
+                            }
+                            </RadioGroup>
+                        </FormControl>
+                    </CardContent>
+                </Card>
+
+                <Card sx={{ maxWidth: 345 }}>
+                    <CardContent>
+                        <FormControl>
+                            <Typography gutterBottom variant="h5" component="div">
+                                Mekana Göre Filtrele
+                            </Typography>
+                            <RadioGroup
+                                aria-labelledby="demo-controlled-radio-buttons-group"
+                                name="controlled-radio-buttons-group"
+                                value={locationValue}
+                            >
+                                
+                            {
+                                eventLocationNames ?
+                                eventLocationNames.map(element => {
+                                    return(
+                                        <div key={uuid()}>
+                                            <FormControlLabel value={element.eventLocationID} control={<Radio onClick={filterByLocation} />} label={element.eventLocationName} />
                                         </div>
                                     )
                                 })

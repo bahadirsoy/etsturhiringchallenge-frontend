@@ -105,17 +105,8 @@ function Event(props){
         return dateString
     }
 
-    const cardStyle = {
-        width: '30vw',
-        height: '24vw'
-    }
-
-    const headerStyle = {
-        height: '3.5vw'
-    }
-
     return(
-        <Card sx={{ maxWidth: 345 }} className="mt-5" style={cardStyle}>
+        <Card sx={{ maxWidth: 345 }} className="mt-5">
             <CardMedia
                 component="img"
                 height=""
@@ -123,7 +114,7 @@ function Event(props){
                 alt="green iguana"
             />
             <CardContent>
-                <Typography gutterBottom variant="h5" component="div" style={headerStyle}>
+                <Typography gutterBottom variant="h5" component="div">
                     {props.eventName}
                 </Typography>
 
