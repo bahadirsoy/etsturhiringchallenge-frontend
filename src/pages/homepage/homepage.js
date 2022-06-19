@@ -12,6 +12,7 @@ import FormLabel from '@mui/material/FormLabel';
 import { Typography } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import TextField from '@mui/material/TextField';
 
 //import axios
 import Axios from 'axios'
@@ -84,6 +85,11 @@ function HomePage(props){
     const [eventLocationNames, setEvenetLocationNames] = useState('')
     /* End of the filter by location variables */
 
+
+    /* Filter by name vriables */
+    /* End of the filter by name variables */
+
+
     //store all events
     const [events, setEvents] = useState('')
     const [filteredEvents, setFilteredEvents] = useState('')
@@ -127,7 +133,18 @@ function HomePage(props){
             </Grid>
 
             <Grid item xs={3}>
-                <Card sx={{ maxWidth: 345 }}>
+                <Card sx={{ maxWidth: 345 }} className="mt-4">
+                    <CardContent>
+                        <FormControl>
+                            <Typography gutterBottom variant="h5" component="div">
+                                Etkinlik adına göre ara
+                            </Typography>
+                            <TextField id="standard-basic" label="" variant="standard" />
+                        </FormControl>
+                    </CardContent>
+                </Card>
+
+                <Card sx={{ maxWidth: 345 }} className="mt-4">
                     <CardContent>
                         <FormControl>
                             <Typography gutterBottom variant="h5" component="div">
