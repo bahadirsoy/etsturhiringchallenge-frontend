@@ -3,17 +3,20 @@
 import './homepage.styles.css'
 
 //import mu components
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
 //import axios
 import Axios from 'axios'
+
+//import hooks
 import { useEffect, useState } from 'react';
+
+//import react uuid
+import uuid from 'react-uuid'
+
+//import components
+import Event from '../../components/event/event.component';
+
 
 function HomePage(props){
 
@@ -23,10 +26,12 @@ function HomePage(props){
 
     //fetch all Events
     useEffect(() => {
+        //get all events
         Axios.get("http://localhost:3001/api/getEvents", {
 
         })
         .then((response) => {
+            //store all events in state variable
             setEvents(response.data)
         })
     }, [])
@@ -40,7 +45,7 @@ function HomePage(props){
 
             <Grid item xs={2}>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit, sint.
-            </Grid>{events ? console.log(events) : null}
+            </Grid>
 
             <Grid container item xs={6} spacing={2}>
                 {
@@ -48,28 +53,13 @@ function HomePage(props){
                     events ? 
                     events.map(event => {
                         return(
-                            <Grid item xs={6} lg={4}>
-                                <Card sx={{ maxWidth: 345 }}>
-                                    <CardMedia
-                                        component="img"
-                                        height="140"
-                                        image="/static/images/cards/contemplative-reptile.jpg"
-                                        alt="green iguana"
-                                    />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div">
-                                        Lizard
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                                        species, ranging across all continents except Antarctica
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions>
-                                        <Button size="small">Share</Button>
-                                        <Button size="small">Learn More</Button>
-                                    </CardActions>
-                                </Card>
+                            <Grid key={uuid()} item xs={6} lg={4}>{console.log(event)}
+                                <Event
+                                    eventName = {event.eventName}
+                                    eventTypeID = {event.eventTypeID}
+                                    eventCityID = {event.eventCityID}
+                                    eventLocationID = {event.eventLocationID}
+                                />
                             </Grid>
                         )
                     }) 
