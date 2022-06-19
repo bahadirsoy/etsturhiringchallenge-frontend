@@ -29,20 +29,25 @@ import Event from '../../components/event/event.component';
 function HomePage(props){
 
     /* Filter by type variables */
-    const [value, setValue] = useState();
+    const [value, setValue] = useState('');
 
     const handleChange = (e) => {
         setValue(e.target.value)
 
-
+        setFilteredEvents(events)
+        const arr = events.filter(event => {
+            return event.eventTypeID == e.target.value
+        })
+        setFilteredEvents(arr)
     };
     
     //store all eventTypeNames
-    const [eventTypeNames, setEventTypeNames] = useState();
+    const [eventTypeNames, setEventTypeNames] = useState('');
     /* End of the filter by type variables */
 
     //store all events
-    const [events, setEvents] = useState()
+    const [events, setEvents] = useState('')
+    const [filteredEvents, setFilteredEvents] = useState('')
 
     //fetch all Events
     useEffect(() => {
@@ -53,6 +58,7 @@ function HomePage(props){
         .then((response) => {
             //store all events in state variable
             setEvents(response.data)
+            setFilteredEvents(response.data)
         })
 
         //get all eventTypeNames
@@ -90,7 +96,7 @@ function HomePage(props){
                                 eventTypeNames.map(element => {
                                     return(
                                         <div key={uuid()}>
-                                            <FormControlLabel value={element.eventTypeName} control={<Radio />} label={element.eventTypeName} />
+                                            <FormControlLabel value={element.eventTypeID} control={<Radio />} label={element.eventTypeName} />
                                         </div>
                                     )
                                 })
@@ -105,8 +111,8 @@ function HomePage(props){
             <Grid container item xs={7} spacing={2}>
                 {
                     //print all events
-                    events ? 
-                    events.map(event => {
+                    filteredEvents ? 
+                    filteredEvents.map(event => {
                         return(
                             <Grid key={uuid()} item sm={12} md={6} lg={4}>
                                 <Event
