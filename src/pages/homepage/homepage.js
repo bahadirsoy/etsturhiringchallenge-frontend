@@ -39,26 +39,28 @@ function HomePage(props){
     return(
        <>
         <Grid container spacing={2}>
-            <Grid item xs={2}>
+            <Grid item xs={1}>
                 
             </Grid>
 
-            <Grid item xs={2}>
+            <Grid item xs={3}>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit, sint.
             </Grid>
 
-            <Grid container item xs={6} spacing={2}>
+            <Grid container item xs={7} spacing={2}>
                 {
                     //print all events
                     events ? 
                     events.map(event => {
                         return(
-                            <Grid key={uuid()} item xs={6} lg={4}>{console.log(event)}
+                            <Grid key={uuid()} item xs={6} lg={4}>
                                 <Event
                                     eventName = {event.eventName}
                                     eventTypeID = {event.eventTypeID}
                                     eventCityID = {event.eventCityID}
                                     eventLocationID = {event.eventLocationID}
+                                    eventDate = {event.eventDate}
+                                    eventImage = {event.eventImage}
                                 />
                             </Grid>
                         )
@@ -67,7 +69,7 @@ function HomePage(props){
                 }
             </Grid>
 
-            <Grid item xs={2}>
+            <Grid item xs={1}>
                 
             </Grid>
         </Grid>

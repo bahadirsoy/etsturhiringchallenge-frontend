@@ -56,22 +56,74 @@ function Event(props){
         })
     }, [])
 
+    //convert timestamp to understandable date format
+    const convertTime = (date) => {
+        const splittedDate = date.split("-")
+        let dateString = "" + splittedDate[0] + " "
+        
+        switch(splittedDate[1]){
+            case "01":
+                dateString += "Ocak"
+                break;
+            case "02":
+                dateString += "Şubat"
+                break;
+            case "03":
+                dateString += "Mart"
+                break;
+            case "04":
+                dateString += "Nisan"
+                break;
+            case "05":
+                dateString += "Mayıs"
+                break;
+            case "06":
+                dateString += "Haziran"
+                break;
+            case "07":
+                dateString += "Temmuz"
+                break;
+            case "08":
+                dateString += "Ağustos"
+                break;
+            case "09":
+                dateString += "Eylül"
+                break;
+            case "10":
+                dateString += "Ekim"
+                break;
+            case "11":
+                dateString += "Kasım"
+                break;
+            case "12":
+                dateString += "Aralık"
+                break;
+            default:
+                break;
+
+        }
+        return dateString
+    }
+
     return(
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
                 component="img"
                 height="140"
-                image="/static/images/cards/contemplative-reptile.jpg"
+                image={`https://soyisibucket2.s3.eu-central-1.amazonaws.com/images/${props.eventImage}`}
                 alt="green iguana"
             />
             <CardContent>
-                <Typography gutterBottom variant="h6" component="div">
+                <Typography gutterBottom variant="h5" component="div">
                     {props.eventName}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+
+                <Typography variant="subtitle1" fontSize={"16px"}>
+                    {convertTime(props.eventDate)}
+                </Typography>
+
+                <Typography variant="subtitle2" color="text.secondary">
                     {eventTypeName ? eventTypeName : null}
-                    {eventCityName ? eventCityName : null}
-                    {eventLocationName ? eventLocationName : null}
                 </Typography>
             </CardContent>
         </Card>
