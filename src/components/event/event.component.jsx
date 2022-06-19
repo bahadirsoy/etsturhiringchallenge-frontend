@@ -25,7 +25,35 @@ function Event(props){
     
     //fetch event details
     useEffect(() => {
-        
+        //fetch eventTypeName
+        Axios.get("http://localhost:3001/api/getEventTypeName", {
+            params: {
+                eventTypeID: props.eventTypeID
+            }
+        })
+        .then((response) => {
+            setEventTypeName(response.data)
+        })
+
+        //fetch eventCityName
+        Axios.get("http://localhost:3001/api/getEventCityName", {
+            params: {
+                eventCityID: props.eventCityID
+            }
+        })
+        .then((response) => {
+            setEventCityName(response.data)
+        })
+
+        //fetch eventLocationName
+        Axios.get("http://localhost:3001/api/getEventLocationName", {
+            params: {
+                eventLocationID: props.eventLocationID
+            }
+        })
+        .then((response) => {
+            setEventLocationName(response.data)
+        })
     }, [])
 
     return(
@@ -41,7 +69,9 @@ function Event(props){
                     {props.eventName}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {props.eventTypeID}
+                    {eventTypeName ? eventTypeName : null}
+                    {eventCityName ? eventCityName : null}
+                    {eventLocationName ? eventLocationName : null}
                 </Typography>
             </CardContent>
         </Card>
