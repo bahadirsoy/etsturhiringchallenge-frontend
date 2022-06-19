@@ -4,6 +4,14 @@ import './homepage.styles.css'
 
 //import mu components
 import Grid from '@mui/material/Grid';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import { Typography } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
 //import axios
 import Axios from 'axios'
@@ -16,11 +24,22 @@ import uuid from 'react-uuid'
 
 //import components
 import Event from '../../components/event/event.component';
-import FilterByType from '../../components/filterbytype/filterbytype.component';
 
 
 function HomePage(props){
 
+    /* Filter by type variables */
+    const [value, setValue] = useState();
+
+    const handleChange = (e) => {
+        setValue(e.target.value)
+
+
+    };
+    
+    //store all eventTypeNames
+    const [eventTypeNames, setEventTypeNames] = useState();
+    /* End of the filter by type variables */
 
     //store all events
     const [events, setEvents] = useState()
@@ -35,6 +54,15 @@ function HomePage(props){
             //store all events in state variable
             setEvents(response.data)
         })
+
+        //get all eventTypeNames
+        Axios.get("http://localhost:3001/api/getEventTypeNames", {
+
+        })
+        .then((response) => {
+            //store all eventTypeNames
+            setEventTypeNames(response.data)
+        })
     }, [])
 
     return(
@@ -45,7 +73,33 @@ function HomePage(props){
             </Grid>
 
             <Grid item xs={3}>
-                <FilterByType></FilterByType>
+                <Card sx={{ maxWidth: 345 }}>
+                    <CardContent>
+                        <FormControl>
+                            <Typography gutterBottom variant="h5" component="div">
+                                Türe Göre Filtrele
+                            </Typography>
+                            <RadioGroup
+                                aria-labelledby="demo-controlled-radio-buttons-group"
+                                name="controlled-radio-buttons-group"
+                                value={value}
+                                onChange={handleChange}
+                            >
+                            {
+                                eventTypeNames ?
+                                eventTypeNames.map(element => {
+                                    return(
+                                        <div key={uuid()}>
+                                            <FormControlLabel value={element.eventTypeName} control={<Radio />} label={element.eventTypeName} />
+                                        </div>
+                                    )
+                                })
+                                : null
+                            }
+                            </RadioGroup>
+                        </FormControl>
+                    </CardContent>
+                </Card>
             </Grid>
 
             <Grid container item xs={7} spacing={2}>
