@@ -105,16 +105,25 @@ function Event(props){
         return dateString
     }
 
+    const cardStyle = {
+        width: '30vw',
+        height: '24vw'
+    }
+
+    const headerStyle = {
+        height: '3.5vw'
+    }
+
     return(
-        <Card sx={{ maxWidth: 345 }} className="mt-5">
+        <Card sx={{ maxWidth: 345 }} className="mt-5" style={cardStyle}>
             <CardMedia
                 component="img"
-                height="140"
+                height=""
                 image={`https://soyisibucket2.s3.eu-central-1.amazonaws.com/images/${props.eventImage}`}
                 alt="green iguana"
             />
             <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h5" component="div" style={headerStyle}>
                     {props.eventName}
                 </Typography>
 

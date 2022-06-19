@@ -31,8 +31,7 @@ function HomePage(props){
     /* Filter by type variables */
     const [typeValue, setTypeValue] = useState('');
 
-    const handleChange = (e) => {
-        console.log(typeValue +" " + e.target.value)
+    const filterByType = (e) => {
         if(typeValue == e.target.value){
             setTypeValue("")
             setFilteredEvents(events)
@@ -104,7 +103,7 @@ function HomePage(props){
                                 eventTypeNames.map(element => {
                                     return(
                                         <div key={uuid()}>
-                                            <FormControlLabel value={element.eventTypeID} control={<Radio onClick={handleChange} />} label={element.eventTypeName} />
+                                            <FormControlLabel value={element.eventTypeID} control={<Radio onClick={filterByType} />} label={element.eventTypeName} />
                                         </div>
                                     )
                                 })
