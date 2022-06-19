@@ -37,6 +37,7 @@ function HomePage(props){
             setTypeValue("")
             const filteredEventsList = events.filter(event => {
                 return (locationValue ? event.eventLocationID == locationValue : true)
+                && (filterByNameValue ? event.eventName.toLowerCase().includes(filterByNameValue.toLowerCase()) : true)
             })
             setFilteredEvents(filteredEventsList)
         } else{
@@ -44,7 +45,9 @@ function HomePage(props){
 
             setFilteredEvents(events)
             const filteredEventsList = events.filter(event => {
-                return event.eventTypeID == e.target.value && (locationValue ? event.eventLocationID == locationValue : true)
+                return event.eventTypeID == e.target.value 
+                && (locationValue ? event.eventLocationID == locationValue : true)
+                && (filterByNameValue ? event.eventName.toLowerCase().includes(filterByNameValue.toLowerCase()) : true)
             })
             setFilteredEvents(filteredEventsList)
         }
@@ -66,6 +69,7 @@ function HomePage(props){
             setLocationValue("")
             const filteredEventsList = events.filter(event => {
                 return (typeValue ? event.eventTypeID == typeValue : true)
+                && (filterByNameValue ? event.eventName.toLowerCase().includes(filterByNameValue.toLowerCase()) : true)
             })
             setFilteredEvents(filteredEventsList)
         } else{
@@ -73,7 +77,9 @@ function HomePage(props){
 
             setFilteredEvents(events)
             const filteredEventsList = events.filter(event => {
-                return event.eventLocationID == e.target.value && (typeValue ? event.eventTypeID == typeValue : true)
+                return event.eventLocationID == e.target.value 
+                && (typeValue ? event.eventTypeID == typeValue : true)
+                && (filterByNameValue ? event.eventName.toLowerCase().includes(filterByNameValue.toLowerCase()) : true)
             })
             setFilteredEvents(filteredEventsList)
         }
@@ -87,6 +93,18 @@ function HomePage(props){
 
 
     /* Filter by name vriables */
+    const [filterByNameValue, setFilterByNameValue] = useState('')
+
+    const filterByName = (e) => {
+        setFilterByNameValue(e.target.value)
+
+        const filteredEvents = events.filter(event => {
+            return event.eventName.toLowerCase().includes(e.target.value.toLowerCase())
+            && (typeValue ? event.eventTypeID == typeValue : true) 
+            && (locationValue ? event.eventLocationID == locationValue : true) 
+        })
+        setFilteredEvents(filteredEvents)
+    }
     /* End of the filter by name variables */
 
 
@@ -139,7 +157,7 @@ function HomePage(props){
                             <Typography gutterBottom variant="h5" component="div">
                                 Etkinlik adına göre ara
                             </Typography>
-                            <TextField id="standard-basic" label="" variant="standard" />
+                            <TextField id="standard-basic" label="" variant="standard" onChange={filterByName} />
                         </FormControl>
                     </CardContent>
                 </Card>
