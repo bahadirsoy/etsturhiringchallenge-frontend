@@ -29,16 +29,24 @@ import Event from '../../components/event/event.component';
 function HomePage(props){
 
     /* Filter by type variables */
-    const [value, setValue] = useState('');
+    const [typeValue, setTypeValue] = useState('');
 
     const handleChange = (e) => {
-        setValue(e.target.value)
+        console.log(typeValue +" " + e.target.value)
+        if(typeValue == e.target.value){
+            setTypeValue("")
+            setFilteredEvents(events)
+        } else{
+            setTypeValue(e.target.value)
 
-        setFilteredEvents(events)
-        const arr = events.filter(event => {
-            return event.eventTypeID == e.target.value
-        })
-        setFilteredEvents(arr)
+            setFilteredEvents(events)
+            const filteredEventsList = events.filter(event => {
+                return event.eventTypeID == e.target.value
+            })
+            setFilteredEvents(filteredEventsList)
+        }
+
+        
     };
     
     //store all eventTypeNames
@@ -88,15 +96,15 @@ function HomePage(props){
                             <RadioGroup
                                 aria-labelledby="demo-controlled-radio-buttons-group"
                                 name="controlled-radio-buttons-group"
-                                value={value}
-                                onChange={handleChange}
+                                value={typeValue}
                             >
+                                
                             {
                                 eventTypeNames ?
                                 eventTypeNames.map(element => {
                                     return(
                                         <div key={uuid()}>
-                                            <FormControlLabel value={element.eventTypeID} control={<Radio />} label={element.eventTypeName} />
+                                            <FormControlLabel value={element.eventTypeID} control={<Radio onClick={handleChange} />} label={element.eventTypeName} />
                                         </div>
                                     )
                                 })
