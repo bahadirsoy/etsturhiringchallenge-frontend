@@ -9,6 +9,9 @@ import reportWebVitals from './reportWebVitals';
 //import react router
 import {BrowserRouter} from 'react-router-dom'
 
+//import reactstrap
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 
 ReactDOM.render(
   <BrowserRouter>

@@ -34,13 +34,16 @@ function HomePage(props){
     const filterByType = (e) => {
         if(typeValue == e.target.value){
             setTypeValue("")
-            setFilteredEvents(events)
+            const filteredEventsList = events.filter(event => {
+                return (locationValue ? event.eventLocationID == locationValue : true)
+            })
+            setFilteredEvents(filteredEventsList)
         } else{
             setTypeValue(e.target.value)
 
             setFilteredEvents(events)
             const filteredEventsList = events.filter(event => {
-                return event.eventTypeID == e.target.value
+                return event.eventTypeID == e.target.value && (locationValue ? event.eventLocationID == locationValue : true)
             })
             setFilteredEvents(filteredEventsList)
         }
@@ -60,13 +63,16 @@ function HomePage(props){
     const filterByLocation = (e) => {
         if(locationValue == e.target.value){
             setLocationValue("")
-            setFilteredEvents(events)
+            const filteredEventsList = events.filter(event => {
+                return (typeValue ? event.eventTypeID == typeValue : true)
+            })
+            setFilteredEvents(filteredEventsList)
         } else{
             setLocationValue(e.target.value)
 
             setFilteredEvents(events)
             const filteredEventsList = events.filter(event => {
-                return event.eventLocationID == e.target.value
+                return event.eventLocationID == e.target.value && (typeValue ? event.eventTypeID == typeValue : true)
             })
             setFilteredEvents(filteredEventsList)
         }
@@ -149,7 +155,7 @@ function HomePage(props){
                     </CardContent>
                 </Card>
 
-                <Card sx={{ maxWidth: 345 }}>
+                <Card sx={{ maxWidth: 345 }} className="mt-4">
                     <CardContent>
                         <FormControl>
                             <Typography gutterBottom variant="h5" component="div">
