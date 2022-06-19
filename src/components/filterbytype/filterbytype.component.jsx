@@ -3,12 +3,12 @@
 import './filterbytype.styles.css'
 
 //import mu components
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+
 
 //import axios
 import Axios from 'axios'
@@ -18,9 +18,26 @@ import { useEffect, useState } from 'react';
 
 function FilterByType(props){
 
+    const [value, setValue] = useState('female');
+
+    const handleChange = (e) => {
+        setValue(e.target.value)
+    };
+
     return(
         <>
-            filterbytype
+            <FormControl>
+                <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
+                <RadioGroup
+                    aria-labelledby="demo-controlled-radio-buttons-group"
+                    name="controlled-radio-buttons-group"
+                    value={value}
+                    onChange={handleChange}
+                >
+                    <FormControlLabel value="female" control={<Radio />} label="Female" />
+                    <FormControlLabel value="male" control={<Radio />} label="Male" />
+                </RadioGroup>
+            </FormControl>
         </>
     )
 }
