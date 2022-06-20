@@ -15,11 +15,20 @@ import { useParams } from 'react-router-dom';
 //import axios
 import Axios from 'axios'
 
+//import hooks
+import { useState } from 'react';
+
+//import react uuid
+import uuid from 'react-uuid'
+
 
 function EventDetails(props){
 
     //eventId parameter to know which specific event we will fetch
     const { eventId } = useParams();
+
+    //store event informations
+    const [eventInfo, setEventInfo] = useState('')
 
     useEffect(() => {
         //fetch eventTypeName
@@ -29,9 +38,9 @@ function EventDetails(props){
             }
         })
         .then((response) => {
-            console.log(response.data)
+            setEventInfo(response.data)
         })
-    })
+    }, [])
 
     return(
         <>
@@ -43,20 +52,21 @@ function EventDetails(props){
                 <Grid item xs={8}>
                     <Card>
                         <Carousel>
-                            <Paper>
-                                <img
-                                className="d-block w-100 image"
-                                src={"https://scontent.fsaw1-11.fna.fbcdn.net/v/t39.30808-6/282750118_5298105680211362_2754277236672243018_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Dq4_FBQRvp8AX8_m0zN&_nc_ht=scontent.fsaw1-11.fna&oh=00_AT9rX9TKZHKF5l0ej0RxO2tGYiTcWoNbw-kg7fMg0IkNoA&oe=62B483C2"}
-                                alt="img not found"
-                                />
-                            </Paper>
-                            <Paper>
-                                <img
-                                className="d-block w-100 image"
-                                src={"https://scontent.fsaw1-15.fna.fbcdn.net/v/t39.30808-6/280390741_5224164587605472_2974267248240525917_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=174925&_nc_ohc=LU1DS9xHByoAX_irR-c&tn=m9YiOpHZwtvhd-PT&_nc_ht=scontent.fsaw1-15.fna&oh=00_AT_KaKKaux7-f18ZZvEVQPTBzcStTXpWgCY-XOzCALTJvA&oe=62B5B248"}
-                                alt="img not found"
-                                />
-                            </Paper>
+                            {
+                                eventInfo ?
+                                eventInfo.eventImage.split(" ").map((image) => {
+                                    return(
+                                        <Paper key={uuid()}>
+                                            <img
+                                            className="d-block w-100 image"
+                                            src={`https://soyisibucket2.s3.eu-central-1.amazonaws.com/images/${image}`}
+                                            alt="img not found"
+                                            />
+                                        </Paper>
+                                    )
+                                })
+                                : null
+                            }
                         </Carousel>
                         
                     </Card>
