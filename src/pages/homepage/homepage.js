@@ -231,7 +231,8 @@ function HomePage(props){
                                     eventTypeID = {event.eventTypeID}
                                     eventCityID = {event.eventCityID}
                                     eventLocationID = {event.eventLocationID}
-                                    eventDate = {event.eventDate}
+                                    eventStartDate = {event.eventStartDate}
+                                    eventEndDate = {event.eventEndDate}
                                     eventImage = {event.eventImage}
                                 />
                             </Grid>

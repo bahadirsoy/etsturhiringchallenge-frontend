@@ -119,7 +119,7 @@ function Event(props){
                 </Typography>
 
                 <Typography variant="subtitle1" fontSize={"16px"}>
-                    {convertTime(props.eventDate)}
+                    {convertTime(props.eventStartDate)} - {convertTime(props.eventEndDate)}
                 </Typography>
 
                 <Typography variant="subtitle2" color="text.secondary" align='left' display={"inline-block"} style={{width: "50%"}}>
