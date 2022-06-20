@@ -110,7 +110,7 @@ function Event(props){
             <CardMedia
                 component="img"
                 height=""
-                image={`https://soyisibucket2.s3.eu-central-1.amazonaws.com/images/${props.eventImage}`}
+                image={`https://soyisibucket2.s3.eu-central-1.amazonaws.com/images/${props.eventImage.split(" ")[0]}`}
                 alt="green iguana"
             />
             <CardContent>
