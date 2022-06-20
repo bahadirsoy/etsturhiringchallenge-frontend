@@ -185,6 +185,10 @@ function EventDetails(props){
                                     : null
                                 }
                             </Typography>
+
+                            <Typography variant="subtitle1" fontSize={"24px"} className="mt-4">
+                                {eventInfo.eventExplanation}
+                            </Typography>
                         </CardContent>
                     </Card>
                 </Grid>
