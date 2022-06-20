@@ -221,7 +221,10 @@ const EventDetails = (props) => {
                         </Tabs>
                     </Box>
                     <TabPanel value={value} index={0}>
-                        <GoogleMaps></GoogleMaps>
+                        <GoogleMaps
+                            eventLocationLat = {eventInfo.eventLocationLat}
+                            eventLocationLng = {eventInfo.eventLocationLng}
+                        />
                     </TabPanel>
                     <TabPanel value={value} index={1} className="d-flex justify-content-center">
                         <List
@@ -243,7 +246,7 @@ const EventDetails = (props) => {
                                         eventInfo ?
                                         eventInfo.eventPrices.split(" ").map((price, i) => {
                                             return(
-                                                <ListItem>
+                                                <ListItem key={uuid()}>
                                                     <ListItemText primary={`Kategori ${i+1}:  ${price}₺`} />
                                                 </ListItem>
                                             )

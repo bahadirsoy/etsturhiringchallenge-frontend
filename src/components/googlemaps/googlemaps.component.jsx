@@ -11,7 +11,8 @@ const GoogleMaps = (props) => {
     })
 
     //google maps api location variables
-    const center = {lat: 40, lng: 29}
+    const {eventLocationLat, eventLocationLng} = props
+    const center = {lat: eventLocationLat, lng: eventLocationLng}
 
     return(
         <>
@@ -20,7 +21,7 @@ const GoogleMaps = (props) => {
                 <>
                     <GoogleMap
                         zoom={10}
-                        center={{lat: 40 , lng: 29}}
+                        center={{lat: eventLocationLat , lng: eventLocationLng}}
                         mapContainerClassName="map-container"
                     >
                         <Marker
