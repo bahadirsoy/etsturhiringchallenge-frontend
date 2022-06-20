@@ -27,7 +27,7 @@ import uuid from 'react-uuid'
 import Event from '../../components/event/event.component';
 
 
-function HomePage(props){
+const HomePage = (props) => {
 
     /* Filter by type variables */
     const [typeValue, setTypeValue] = useState('');

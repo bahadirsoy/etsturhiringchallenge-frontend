@@ -7,9 +7,13 @@ import Grid from '@mui/material/Grid';
 import Carousel from 'react-material-ui-carousel'
 import { Paper, Button } from '@mui/material'
 import Card from '@mui/material/Card';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import AppBar from '@mui/material/AppBar';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
 //import react router
 import { useParams } from 'react-router-dom';
@@ -24,7 +28,7 @@ import { useState } from 'react';
 import uuid from 'react-uuid'
 
 
-function EventDetails(props){
+const EventDetails = (props) => {
 
     //eventId parameter to know which specific event we will fetch
     const { eventId } = useParams();
@@ -130,6 +134,8 @@ function EventDetails(props){
         })
     }, [])
 
+    
+
     return(
         <>
             <Grid container>
@@ -197,6 +203,8 @@ function EventDetails(props){
 
                 </Grid>
             </Grid>
+
+            
         </>
     )
 }
