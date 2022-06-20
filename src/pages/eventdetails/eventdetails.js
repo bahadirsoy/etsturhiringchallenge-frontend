@@ -15,6 +15,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListSubheader from '@mui/material/ListSubheader';
 
 //import react router
 import { useParams } from 'react-router-dom';
@@ -219,8 +223,28 @@ const EventDetails = (props) => {
                     <TabPanel value={value} index={0}>
                         <GoogleMaps></GoogleMaps>
                     </TabPanel>
-                    <TabPanel value={value} index={1}>
-                        Item 2 Detail
+                    <TabPanel value={value} index={1} className="d-flex justify-content-center">
+                        <List
+                            sx={{
+                                width: '100%',
+                                maxWidth: 400,
+                                bgcolor: 'background.paper',
+                                position: 'relative',
+                                overflow: 'auto',
+                                maxHeight: 300,
+                                '& ul': { padding: 0 },
+                                marginX: 'auto'
+                            }}
+                            subheader={<li />}
+                            >
+                            <li>
+                                <ul>
+                                    <ListItem>
+                                        <ListItemText primary="Item 1" />
+                                    </ListItem>
+                                </ul>
+                            </li>
+                        </List>
                     </TabPanel>
                 </Grid>
 
