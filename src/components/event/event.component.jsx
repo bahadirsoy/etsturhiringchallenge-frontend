@@ -13,6 +13,9 @@ import Typography from '@mui/material/Typography';
 //import axios
 import Axios from 'axios'
 
+//import react router
+import { Link } from 'react-router-dom';
+
 //import hooks
 import { useEffect, useState } from 'react';
 
@@ -106,32 +109,34 @@ function Event(props){
     }
 
     return(
-        <Card sx={{ maxWidth: 345 }} className="mt-5">
-            <CardMedia
-                component="img"
-                height=""
-                image={`https://soyisibucket2.s3.eu-central-1.amazonaws.com/images/${props.eventImage.split(" ")[0]}`}
-                alt="green iguana"
-            />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    {props.eventName}
-                </Typography>
+        <Link to={`/eventdetails/${props.eventID}`}>
+            <Card sx={{ maxWidth: 345 }} className="mt-5">
+                <CardMedia
+                    component="img"
+                    height=""
+                    image={`https://soyisibucket2.s3.eu-central-1.amazonaws.com/images/${props.eventImage.split(" ")[0]}`}
+                    alt="green iguana"
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                        {props.eventName}
+                    </Typography>
 
-                <Typography variant="subtitle1" fontSize={"16px"}>
-                    {convertTime(props.eventStartDate)} - {convertTime(props.eventEndDate)}
-                </Typography>
+                    <Typography variant="subtitle1" fontSize={"16px"}>
+                        {convertTime(props.eventStartDate)} - {convertTime(props.eventEndDate)}
+                    </Typography>
 
-                <Typography variant="subtitle2" color="text.secondary" align='left' display={"inline-block"} style={{width: "50%"}}>
-                    {eventTypeName ? eventTypeName : null}
-                </Typography>
+                    <Typography variant="subtitle2" color="text.secondary" align='left' display={"inline-block"} style={{width: "50%"}}>
+                        {eventTypeName ? eventTypeName : null}
+                    </Typography>
 
-                <Typography variant="subtitle2" color="text.secondary" align='right' display={"inline-block"} style={{width: "50%"}}>
-                    {eventLocationName ? eventLocationName : null}
-                </Typography>
-                
-            </CardContent>
-        </Card>
+                    <Typography variant="subtitle2" color="text.secondary" align='right' display={"inline-block"} style={{width: "50%"}}>
+                        {eventLocationName ? eventLocationName : null}
+                    </Typography>
+                    
+                </CardContent>
+            </Card>
+        </Link>
     )
 }
 

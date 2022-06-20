@@ -227,6 +227,7 @@ function HomePage(props){
                         return(
                             <Grid key={uuid()} item sm={12} md={6} lg={4}>
                                 <Event
+                                    eventID = {event.eventId}
                                     eventName = {event.eventName}
                                     eventTypeID = {event.eventTypeID}
                                     eventCityID = {event.eventCityID}

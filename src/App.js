@@ -13,7 +13,7 @@ import {
 
 //import pages
 import HomePage from './pages/homepage/homepage';
-
+import EventDetails from './pages/eventdetails/eventdetails';
 
 
 function App() {
@@ -22,6 +22,9 @@ function App() {
       <Routes>
         <Route path='/' element={
           <HomePage/>
+        }/>
+        <Route path='/eventdetails/:eventID' element={
+          <EventDetails/>
         }/>
       </Routes>
     </>
