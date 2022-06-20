@@ -14,6 +14,7 @@ import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 //import react router
 import { useParams } from 'react-router-dom';
@@ -134,14 +135,15 @@ const EventDetails = (props) => {
         })
     }, [])
 
-    
+    const [value, setValue] = useState(0)
+    const handleTabs = (e, val) => {
+        setValue(val)
+    }
 
     return(
         <>
             <Grid container>
-                <Grid item xs={2}>
-
-                </Grid>
+                <Grid item xs={2}></Grid>
 
                 <Grid item xs={8}>
                     <Card>
@@ -199,13 +201,36 @@ const EventDetails = (props) => {
                     </Card>
                 </Grid>
 
-                <Grid item xs={2}>
+                <Grid item xs={2}></Grid>
 
+                <Grid item xs={2}></Grid>
+
+                <Grid item xs={8}>
+                    <Box sx={{ width: '100%', backgroundColor: '#d9d9d9' }} className="mt-5" >
+                        <Tabs value={value} onChange={handleTabs} centered>
+                            <Tab label="Adres"/>
+                            <Tab label="Bilet Fiyatları"/>
+                        </Tabs>
+                    </Box>
+                    <TabPanel value={value} index={0}>Item 1 Detail</TabPanel>
+                    <TabPanel value={value} index={1}>Item 2 Detail</TabPanel>
                 </Grid>
-            </Grid>
 
-            
+                <Grid item xs={2}></Grid>
+            </Grid>
         </>
+    )
+}
+
+const TabPanel = (props) => {
+    return(
+        <div>
+            {
+                props.value === props.index && (
+                    <h1>{props.children}</h1>
+                )
+            }
+        </div>
     )
 }
 
