@@ -239,9 +239,17 @@ const EventDetails = (props) => {
                             >
                             <li>
                                 <ul>
-                                    <ListItem>
-                                        <ListItemText primary="Item 1" />
-                                    </ListItem>
+                                    {
+                                        eventInfo ?
+                                        eventInfo.eventPrices.split(" ").map((price, i) => {
+                                            return(
+                                                <ListItem>
+                                                    <ListItemText primary={`Kategori ${i+1}:  ${price}₺`} />
+                                                </ListItem>
+                                            )
+                                        })
+                                        : null
+                                    }
                                 </ul>
                             </li>
                         </List>
