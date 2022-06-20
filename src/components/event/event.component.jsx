@@ -131,7 +131,6 @@ function Event(props){
                     <Typography variant="subtitle2" color="text.secondary" align='right' display={"inline-block"} style={{width: "50%"}}>
                         {eventLocationName ? eventLocationName : null}
                     </Typography>
-                    
                 </CardContent>
             </Card>
         </Link>
