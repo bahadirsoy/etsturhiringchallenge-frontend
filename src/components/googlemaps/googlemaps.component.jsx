@@ -10,18 +10,25 @@ const GoogleMaps = (props) => {
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
     })
 
+    //google maps api location variables
+    const center = {lat: 40, lng: 29}
+
     return(
         <>
             {
                 isLoaded ?
                 <>
                     <GoogleMap
-                    zoom={10}
-                    center={{lat: 44, lng: -80}}
-                    mapContainerClassName="map-container"
+                        zoom={10}
+                        center={{lat: 40 , lng: 29}}
+                        mapContainerClassName="map-container"
                     >
-
+                        <Marker
+                            position={center}
+                        />
                     </GoogleMap>
+                    
+                    
                 </>
                 :
                 <>
