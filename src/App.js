@@ -23,7 +23,7 @@ function App() {
         <Route path='/' element={
           <HomePage/>
         }/>
-        <Route path='/eventdetails/:eventID' element={
+        <Route path='/eventdetails/:eventId' element={
           <EventDetails/>
         }/>
       </Routes>
