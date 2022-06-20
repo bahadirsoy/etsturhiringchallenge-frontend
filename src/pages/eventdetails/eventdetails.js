@@ -28,6 +28,9 @@ import { useState } from 'react';
 //import react uuid
 import uuid from 'react-uuid'
 
+//import components
+import GoogleMaps from '../../components/googlemaps/googlemaps.component';
+
 
 const EventDetails = (props) => {
 
@@ -135,6 +138,7 @@ const EventDetails = (props) => {
         })
     }, [])
 
+    //tab panel variables
     const [value, setValue] = useState(0)
     const handleTabs = (e, val) => {
         setValue(val)
@@ -212,11 +216,16 @@ const EventDetails = (props) => {
                             <Tab label="Bilet Fiyatları"/>
                         </Tabs>
                     </Box>
-                    <TabPanel value={value} index={0}>Item 1 Detail</TabPanel>
-                    <TabPanel value={value} index={1}>Item 2 Detail</TabPanel>
+                    <TabPanel value={value} index={0}>
+                        <GoogleMaps></GoogleMaps>
+                    </TabPanel>
+                    <TabPanel value={value} index={1}>
+                        Item 2 Detail
+                    </TabPanel>
                 </Grid>
 
                 <Grid item xs={2}></Grid>
+                
             </Grid>
         </>
     )
