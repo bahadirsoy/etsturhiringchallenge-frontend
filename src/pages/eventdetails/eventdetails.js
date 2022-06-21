@@ -155,6 +155,7 @@ const EventDetails = (props) => {
 
                 <Grid item xs={8}>
                     <Card>
+                        {/* event images */}
                         <Carousel>
                             {
                                 eventInfo ?
@@ -173,6 +174,7 @@ const EventDetails = (props) => {
                             }
                         </Carousel>
 
+                        {/* event informations */}
                         <CardContent>
                             <Typography gutterBottom variant="h3" component="div">
                                 {eventInfo.eventName}
@@ -213,6 +215,7 @@ const EventDetails = (props) => {
 
                 <Grid item xs={2}></Grid>
 
+                {/* address and price list */}
                 <Grid item xs={8}>
                     <Box sx={{ width: '100%', backgroundColor: '#d9d9d9' }} className="mt-5" >
                         <Tabs value={value} onChange={handleTabs} centered>
@@ -266,6 +269,7 @@ const EventDetails = (props) => {
     )
 }
 
+{/* individual tab panel */}
 const TabPanel = (props) => {
     return(
         <div>

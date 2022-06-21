@@ -32,15 +32,18 @@ const HomePage = (props) => {
     /* Filter by type variables */
     const [typeValue, setTypeValue] = useState('');
 
+    //filter by eventType
     const filterByType = (e) => {
+        //if user clicks same type
         if(typeValue == e.target.value){
             setTypeValue("")
+            //filter events by other filtering
             const filteredEventsList = events.filter(event => {
                 return (locationValue ? event.eventLocationID == locationValue : true)
                 && (filterByNameValue ? event.eventName.toLowerCase().includes(filterByNameValue.toLowerCase()) : true)
             })
             setFilteredEvents(filteredEventsList)
-        } else{
+        } else{ //if user clickcs another eventType, filter events by their type and other filterings
             setTypeValue(e.target.value)
 
             setFilteredEvents(events)
@@ -64,15 +67,18 @@ const HomePage = (props) => {
     /* Filter by location variables */
     const [locationValue, setLocationValue] = useState('');
 
+    //filter by location
     const filterByLocation = (e) => {
+        //if user clicks same type
         if(locationValue == e.target.value){
             setLocationValue("")
+            //filter events by other filtering
             const filteredEventsList = events.filter(event => {
                 return (typeValue ? event.eventTypeID == typeValue : true)
                 && (filterByNameValue ? event.eventName.toLowerCase().includes(filterByNameValue.toLowerCase()) : true)
             })
             setFilteredEvents(filteredEventsList)
-        } else{
+        } else{ //if user clickcs another eventType, filter events by their location and other filterings
             setLocationValue(e.target.value)
 
             setFilteredEvents(events)
@@ -95,9 +101,11 @@ const HomePage = (props) => {
     /* Filter by name vriables */
     const [filterByNameValue, setFilterByNameValue] = useState('')
 
+    //filter by eventName
     const filterByName = (e) => {
         setFilterByNameValue(e.target.value)
 
+        //filter events by their name and other filterings
         const filteredEvents = events.filter(event => {
             return event.eventName.toLowerCase().includes(e.target.value.toLowerCase())
             && (typeValue ? event.eventTypeID == typeValue : true) 
@@ -146,11 +154,12 @@ const HomePage = (props) => {
     return(
        <>
         <Grid container spacing={2}>
-            <Grid item xs={1}>
+            <Grid item md={1} sm={0}>
                 
             </Grid>
 
-            <Grid item xs={3}>
+            <Grid item md={3} sm={4}>
+                {/* Filter by event name */}
                 <Card sx={{ maxWidth: 345 }} className="mt-4">
                     <CardContent>
                         <FormControl>
@@ -162,6 +171,7 @@ const HomePage = (props) => {
                     </CardContent>
                 </Card>
 
+                {/* filter by eventType */}
                 <Card sx={{ maxWidth: 345 }} className="mt-4">
                     <CardContent>
                         <FormControl>
@@ -190,6 +200,7 @@ const HomePage = (props) => {
                     </CardContent>
                 </Card>
 
+                {/* filter by eventLocation */}
                 <Card sx={{ maxWidth: 345 }} className="mt-4">
                     <CardContent>
                         <FormControl>
@@ -219,7 +230,8 @@ const HomePage = (props) => {
                 </Card>
             </Grid>
 
-            <Grid container item xs={7} spacing={2}>
+            {/* print all events */}
+            <Grid container item md={7} sm={7} spacing={2}>
                 {
                     //print all events
                     filteredEvents ? 
@@ -239,11 +251,11 @@ const HomePage = (props) => {
                             </Grid>
                         )
                     }) 
-                    : "Loading brom"
+                    : "Loading..."
                 }
             </Grid>
 
-            <Grid item xs={1}>
+            <Grid item md={1} sm={0}>
                 
             </Grid>
         </Grid>
